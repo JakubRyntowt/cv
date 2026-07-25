@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jakub Ryntowt — Kierownik Operacyjny</title>
+<meta name="description" content="Kierownik Operacyjny: zarządzanie produkcją konstrukcji stalowych, transformacja cyfrowa i AI w przemyśle. TOC + Lean + dane.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230f766e'/><text x='50' y='68' font-size='52' font-family='Segoe UI,sans-serif' font-weight='700' fill='white' text-anchor='middle'>JR</text></svg>">
+<style>
+  :root {
+    --ink: #1c1c1c;
+    --muted: #555;
+    --faint: #888;
+    --accent: #0f766e;
+    --accent-dark: #0b5a54;
+    --accent-soft: #e6f2f0;
+    --tile: #fafaf9;
+    --rule: #e5e5e5;
+    --max: 1060px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: #fff;
+    line-height: 1.6;
+    font-size: 17px;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto; padding: 12px 24px;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .nav-logo { font-weight: 700; letter-spacing: .02em; text-decoration: none; color: var(--ink); white-space: nowrap; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted); font-size: 14.5px; font-weight: 600;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ---------- hero ---------- */
+  header.hero { padding: 84px 0 64px; }
+  .kicker {
+    color: var(--accent); font-weight: 700; text-transform: uppercase;
+    letter-spacing: .18em; font-size: 13px; margin-bottom: 14px;
+  }
+  .hero h1 { font-size: clamp(40px, 7vw, 64px); line-height: 1.05; letter-spacing: -.015em; }
+  .hero .role { font-size: clamp(20px, 3vw, 26px); color: var(--accent); font-weight: 650; margin-top: 10px; }
+  .hero .lead {
+    max-width: 720px; color: var(--muted); margin-top: 22px; font-size: 18.5px;
+  }
+  .cta-row { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 650; font-size: 16px;
+    padding: 13px 26px; border-radius: 8px; transition: transform .15s, box-shadow .15s, background .15s;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(15,118,110,.25); }
+  .btn-ghost { border: 1.5px solid var(--rule); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px;
+  }
+  .stat {
+    background: var(--tile); border-top: 3px solid var(--accent);
+    padding: 22px 18px 18px; text-align: center;
+  }
+  .stat .v {
+    font-size: clamp(26px, 3.4vw, 36px); font-weight: 750; color: var(--accent);
+    letter-spacing: -.01em; white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
+  .stat .l { color: var(--faint); font-size: 14px; margin-top: 6px; line-height: 1.4; }
+
+  /* ---------- sections ---------- */
+  section { padding: 72px 0; }
+  section.alt { background: var(--tile); }
+  .sec-head { margin-bottom: 42px; }
+  .sec-head h2 { font-size: clamp(28px, 4vw, 38px); letter-spacing: -.01em; }
+  .sec-head p { color: var(--muted); margin-top: 8px; max-width: 700px; }
+  .sec-head .kicker { margin-bottom: 8px; }
+
+  /* ---------- timeline ---------- */
+  .company-group {
+    border: 1.5px solid #cfe5e2;
+    background: linear-gradient(180deg, #f2f9f8 0%, #ffffff 60%);
+    border-radius: 14px;
+    padding: 24px 26px 26px;
+    margin-bottom: 30px;
+  }
+  .cg-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; flex-wrap: wrap; margin-bottom: 6px;
+  }
+  .cg-name { font-size: 24px; font-weight: 750; letter-spacing: -.01em; }
+  .cg-badge {
+    background: var(--accent); color: #fff; font-weight: 700; font-size: 13.5px;
+    padding: 6px 14px; border-radius: 999px;
+  }
+  .cg-sub { color: var(--faint); font-size: 14.5px; margin-bottom: 22px; }
+  .timeline { position: relative; margin-left: 10px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px;
+    background: var(--rule);
+  }
+  .titem { position: relative; padding: 0 0 34px 34px; }
+  .titem:last-child { padding-bottom: 0; }
+  .titem::before {
+    content: ""; position: absolute; left: -6px; top: 7px; width: 14px; height: 14px;
+    border-radius: 50%; background: #fff; border: 3px solid var(--accent);
+  }
+  .titem.big::before { background: var(--accent); }
+  .titem .when { font-size: 13.5px; font-weight: 700; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; }
+  .titem h3 { font-size: 21px; margin-top: 2px; }
+  .titem .where { color: var(--faint); font-size: 14.5px; margin-top: 1px; }
+  .titem p { color: var(--muted); margin-top: 8px; max-width: 760px; }
+  .titem .hl { color: var(--ink); font-weight: 650; }
+
+  /* ---------- systems ---------- */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 10px;
+    transition: transform .18s, box-shadow .18s, border-color .18s;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.08); border-color: #d3d3d0; }
+  .card h3 { font-size: 20px; }
+  .card .problem { color: var(--faint); font-size: 14.5px; font-style: italic; }
+  .card p.desc { color: var(--muted); font-size: 15.5px; flex: 1; }
+  .badge {
+    align-self: flex-start; background: var(--accent-soft); color: var(--accent-dark);
+    font-weight: 700; font-size: 14px; padding: 5px 12px; border-radius: 999px;
+  }
+  .card.wide { grid-column: 1 / -1; }
+
+  /* ---------- approach ---------- */
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .tile { background: #fff; border-top: 3px solid var(--accent); padding: 22px 20px; }
+  .tile h3 { font-size: 17.5px; margin-bottom: 8px; }
+  .tile p { color: var(--muted); font-size: 14.5px; }
+
+  /* ---------- skills ---------- */
+  .skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .skill {
+    background: var(--tile); padding: 22px 24px; border-radius: 10px;
+  }
+  .skill h3 {
+    font-size: 14px; text-transform: uppercase; letter-spacing: .12em;
+    color: var(--accent); margin-bottom: 10px;
+  }
+  .skill p { color: var(--muted); font-size: 15.5px; }
+  .courses-note { margin-top: 26px; color: var(--faint); font-size: 14.5px; max-width: 860px; }
+  .courses-note strong { color: var(--muted); }
+
+  /* ---------- contact ---------- */
+  .contact-box { text-align: center; padding: 10px 0 6px; }
+  .contact-box h2 { font-size: clamp(28px, 4vw, 38px); }
+  .contact-box p { color: var(--muted); margin: 14px auto 28px; max-width: 560px; }
+  footer {
+    border-top: 1px solid var(--rule); padding: 22px 0; color: var(--faint);
+    font-size: 13.5px; text-align: center;
+  }
+
+  /* ---------- reveal animations ---------- */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat .v { font-size: 24px; white-space: normal; }
+    .cards, .skill-grid { grid-template-columns: 1fr; }
+    .tiles { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    header.hero { padding: 56px 0 48px; }
+    section { padding: 56px 0; }
+  }
+  @media (max-width: 420px) {
+    .tiles { grid-template-columns: 1fr; }
+    .stats { gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top">Jakub <span>Ryntowt</span></a>
+    <div class="nav-links">
+      <a href="#kariera">Kariera</a>
+      <a href="#systemy">Systemy</a>
+      <a href="#podejscie">Jak pracuję</a>
+      <a href="#kompetencje">Kompetencje</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <div class="kicker">Kierownik Operacyjny · produkcja konstrukcji stalowych</div>
+  <h1>Jakub Ryntowt</h1>
+  <div class="role">Zarządzanie produkcją · Transformacja cyfrowa · AI w przemyśle</div>
+  <p class="lead">
+    Odpowiadam za operacyjne funkcjonowanie dwóch zakładów produkcyjnych. Decyzje opieram na danych,
+    organizację usprawniam Teorią Ograniczeń i Lean, a narzędzia, których brakuje — buduję sam,
+    z&nbsp;wykorzystaniem AI. Moim celem nie jest praca w firmie, lecz praca nad firmą.
+  </p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="CV_Jakub_Ryntowt.pdf" download>Pobierz CV (PDF)</a>
+    <a class="btn btn-ghost" href="#kontakt">Skontaktuj się</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat reveal">
+      <div class="v"><span data-count="300" data-prefix="+" data-suffix="%">+300%</span></div>
+      <div class="l">wzrost zysku firmy<br>(TOC + Lean)</div>
+    </div>
+    <div class="stat reveal">
+      <div class="v"><span data-count="150" data-prefix="~">~150</span></div>
+      <div class="l">użytkowników<br>autorskich systemów</div>
+    </div>
+    <div class="stat reveal">
+      <div class="v">6&nbsp;h → <span data-count="40" data-suffix="&nbsp;min">40&nbsp;min</span></div>
+      <div class="l">przygotowanie dokumentacji<br>produkcyjnej</div>
+    </div>
+    <div class="stat reveal">
+      <div class="v">−1&nbsp;dzień</div>
+      <div class="l">w procesie<br>zakupowym</div>
+    </div>
+  </div>
+</header>
+
+<section id="kariera">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Ścieżka zawodowa</div>
+      <h2>Od spawalnictwa do zarządzania operacyjnego</h2>
+      <p>12 lat w produkcji ciężkich konstrukcji stalowych — każdy szczebel przeszedłem od środka.
+      Od 2017 roku rozwijam się w jednej firmie: cztery stanowiska, kolejne awanse.</p>
+    </div>
+
+    <div class="company-group reveal">
+      <div class="cg-head">
+        <span class="cg-name">Smulders Polska Sp. z o.o.</span>
+        <span class="cg-badge">jedna firma · 4 stanowiska · od 2017 do dziś</span>
+      </div>
+      <div class="cg-sub">produkcja ciężkich konstrukcji stalowych — ścieżka awansów: od głównego spawalnika do kierownika operacyjnego</div>
+      <div class="timeline">
+      <div class="titem big reveal">
+        <div class="when">04/2026 – obecnie</div>
+        <h3>Kierownik Operacyjny</h3>
+        <div class="where">zakłady Zielona Góra i Chocianów</div>
+        <p>Strategiczne i operacyjne funkcjonowanie <span class="hl">dwóch zakładów</span>: produkcja, techniczne
+        przygotowanie produkcji, planowanie, zakupy, magazyn. Alokacja produkcji między zakładami na bazie analiz
+        rentowności i wydajności, decyzje inwestycyjne (ROI, CAPEX), cyfryzacja przedsiębiorstwa.</p>
+      </div>
+      <div class="titem big reveal">
+        <div class="when">01/2023 – 04/2026</div>
+        <h3>Kierownik Produkcji</h3>
+        <div class="where">Chocianów</div>
+        <p><span class="hl">Kilkukrotny wzrost przerobu zakładu i zysku firmy o ok. 300%</span> dzięki zarządzaniu
+        wąskimi gardłami wg Teorii Ograniczeń połączonemu z narzędziami Lean. Autorski 3-poziomowy system planowania
+        (strategiczny → ogólny → dzienny), budowa systemu zarządzania produkcją dla ~150 osób, wdrożenie
+        maszyny do cięcia laserowego blach z pełną wydajnością od startu.</p>
+      </div>
+      <div class="titem reveal">
+        <div class="when">01/2021 – 01/2023</div>
+        <h3>Kierownik Działu Technicznego oraz Działu Zakupów</h3>
+        <div class="where">Chocianów</div>
+        <p>10-osobowy zespół: techniczne przygotowanie produkcji, planowanie, zaopatrzenie, logistyka.
+        Rozwój mocy produkcyjnych zakładu.</p>
+      </div>
+      <div class="titem reveal">
+        <div class="when">12/2017 – 12/2020</div>
+        <h3>Główny Spawalnik</h3>
+        <div class="where">Zielona Góra</div>
+        <p>Technologie spawania, dokumentacja technologiczna, uprawnienia spawalnicze zakładu i nadzór
+        nad kwalifikacjami spawaczy. Międzynarodowy Inżynier Spawalnik (IWE).</p>
+      </div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="titem reveal">
+        <div class="when">2016 – 2022</div>
+        <h3>Konstruktor zbiorników paliwowych</h3>
+        <div class="where">CONAL · zdalnie, po godzinach</div>
+        <p>Zbiorniki 150–60 000 l: projekty, dokumentacja warsztatowa i handlowa, wsparcie techniczne producentów.</p>
+      </div>
+      <div class="titem reveal">
+        <div class="when">2014 – 2017</div>
+        <h3>Konstruktor-technolog</h3>
+        <div class="where">ZASTAL S.A. · Zielona Góra</div>
+        <p>Projektowanie wyrobów branży metalowej, technologie, instrukcje spawania (WPS), kontrola jakości.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="systemy">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Autorskie systemy IT</div>
+      <h2>Narzędzia, których brakowało — więc je zbudowałem</h2>
+      <p>Zaprojektowane i zbudowane samodzielnie z wykorzystaniem AI, wdrożone produkcyjnie w firmie.
+      Każde rozwiązuje realny problem biznesowy.</p>
+    </div>
+    <div class="cards">
+      <div class="card wide reveal">
+        <h3>System zarządzania produkcją</h3>
+        <div class="problem">Problem: planowanie w arkuszach, papierowe listy na hali, brak danych o wynikach produkcji.</div>
+        <p class="desc">Prowadzi produkcję od dokumentacji warsztatowej po wysyłkę: plan produkcji, listy produkcyjne
+        z checklistami na tabletach na hali, optymalizacja cięcia, magazyn materiałów, plan wysyłek, karty pracy
+        i wydajność. Centralna baza danych dostępna z biura i z hali — dane o wynikach, których wcześniej
+        w firmie nie było, pozwalające rozliczać produkcję z efektów.</p>
+        <span class="badge">~150 użytkowników · dokumentacja 6 h → 40 min · −3 etaty</span>
+      </div>
+      <div class="card reveal">
+        <h3>SteelDesk — aplikacja zakupowa</h3>
+        <div class="problem">Problem: ręczne zbieranie ofert i zestawień zakupowych.</div>
+        <p class="desc">Pełny proces zakupu profili stalowych dla dwóch oddziałów: zapotrzebowania, porównywarka
+        ofert dostawców (zł/kg, zł/mb), zamówienia z eksportem do Excela, archiwum i statystyki cen.</p>
+        <span class="badge">zapytanie 5 h → 1 h · proces −1 dzień</span>
+      </div>
+      <div class="card reveal">
+        <h3>Dashboard KPI produkcji</h3>
+        <div class="problem">Problem: wskaźniki rozproszone po raportach i arkuszach.</div>
+        <p class="desc">Wskaźniki obu zakładów w jednym miejscu: tony tygodniowo, produkcja vs cel, efektywność
+        godzinowa (kg/h), terminowość wysyłek. Role użytkowników i logowanie.</p>
+        <span class="badge">jeden ekran zamiast wielu raportów</span>
+      </div>
+      <div class="card reveal">
+        <h3>Aplikacja R&amp;D</h3>
+        <div class="problem">Problem: pomysły na usprawnienia ginęły bez systemowej obsługi.</div>
+        <p class="desc">Zarządzanie pomysłami i projektami usprawnień: tablica pomysłów, macierz priorytetów
+        Eisenhowera, harmonogramy Gantta, zadania zespołu, powiadomienia.</p>
+        <span class="badge">usprawnienia pod kontrolą</span>
+      </div>
+      <div class="card reveal">
+        <h3>Macierz obowiązków + mapy procesów</h3>
+        <div class="problem">Problem: reorganizacja działów bez pełnego obrazu "kto co robi".</div>
+        <p class="desc">Tabela obowiązków (praca stała / zastępstwo) w podziale na działy oraz edytor map
+        procesów z eksportem do PDF — podstawa decyzji reorganizacyjnych.</p>
+        <span class="badge">narzędzie reorganizacji</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="podejscie">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Jak pracuję</div>
+      <h2>Globalnie, nie lokalnie</h2>
+      <p>Tylko całościowe spojrzenie na organizację ma sens — poprawiam przepływ całej firmy, nie pojedynczych stanowisk.</p>
+    </div>
+    <div class="tiles">
+      <div class="tile reveal">
+        <h3>Teoria Ograniczeń</h3>
+        <p>Certyfikowany cykl TOC+ do poziomu JONAH. Zarządzanie wąskim gardłem wyznacza priorytety całego zakładu.</p>
+      </div>
+      <div class="tile reveal">
+        <h3>Lean Management</h3>
+        <p>Mapowanie strumienia wartości, eliminacja strat, skracanie czasu realizacji — narzędzia w służbie przepływu.</p>
+      </div>
+      <div class="tile reveal">
+        <h3>Decyzje na danych</h3>
+        <p>Excel, Power Query, Power BI, własne dashboardy KPI. Każdą decyzję popieram liczbami: wydajnością, kosztami, ROI.</p>
+      </div>
+      <div class="tile reveal">
+        <h3>AI w praktyce</h3>
+        <p>Automatyzacja pracy biurowej, analizy biznesowe i budowa aplikacji — AI jako codzienne narzędzie, nie hasło.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="kompetencje">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Kompetencje</div>
+      <h2>Inżynier, menedżer, analityk</h2>
+    </div>
+    <div class="skill-grid">
+      <div class="skill reveal">
+        <h3>Zarządzanie</h3>
+        <p>Teoria Ograniczeń (TOC+ do poziomu JONAH), Lean Management, planowanie produkcji, budżetowanie,
+        analiza ROI / CAPEX, raportowanie zarządcze, prowadzenie inwestycji i wdrożeń.</p>
+      </div>
+      <div class="skill reveal">
+        <h3>Analiza danych</h3>
+        <p>Excel (poziom zaawansowany), Power Query, Power BI, budowa dashboardów i wskaźników KPI,
+        automatyzacja raportowania, modelowanie danych.</p>
+      </div>
+      <div class="skill reveal">
+        <h3>AI i cyfryzacja</h3>
+        <p>Praktyczne wdrożenia AI w przemyśle: automatyzacja pracy biurowej, analizy biznesowe,
+        budowa aplikacji webowych wspieranych AI, cyfryzacja procesów przedsiębiorstwa.</p>
+      </div>
+      <div class="skill reveal">
+        <h3>Inżynierskie</h3>
+        <p>Międzynarodowy Inżynier Spawalnik (IWE), AutoCAD, Inventor 3D, środowisko EN 1090 EXC4,
+        ISO 3834, ISO 9001. Studia: Mechanika i budowa maszyn (PWr) + podyplomowe Procesy spajania (PWr).</p>
+      </div>
+    </div>
+    <p class="courses-note reveal">
+      <strong>Wybrane szkolenia:</strong> TOC+ JONAH (2023) · TOC+ Beyond DNA (2022) · TOC+ Finances &amp; Measurements
+      i Production &amp; Services (2021) · TOC+ DNA (2020) · FMEA (2019) · Lean Management i Mapowanie strumienia
+      wartości — LEI Polska (2018) · VT2 (2017) · IWE (2016) &nbsp;·&nbsp; Język angielski: B2
+    </p>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="wrap contact-box reveal">
+    <div class="kicker">Kontakt</div>
+    <h2>Porozmawiajmy</h2>
+    <p>Szukasz kogoś, kto połączy zarządzanie produkcją z transformacją cyfrową?
+    Napisz — odpowiadam szybko.</p>
+    <div class="cta-row" style="justify-content:center;">
+      <a class="btn btn-primary" href="mailto:jakubryntowt@gmail.com">jakubryntowt@gmail.com</a>
+      <a class="btn btn-ghost" href="tel:+48789130714">+48 789 130 714</a>
+      <a class="btn btn-ghost" href="CV_Jakub_Ryntowt.pdf" download>Pobierz CV (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Jakub Ryntowt · okolice Zielonej Góry · strona zbudowana samodzielnie — jak wszystkie moje narzędzia</div>
+</footer>
+
+<script>
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    }
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // animated counters
+  const fmt = (el, val) => {
+    el.textContent = (el.dataset.prefix || '') + val + (el.dataset.suffix || '');
+  };
+  const counterIo = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      counterIo.unobserve(e.target);
+      const el = e.target, target = parseInt(el.dataset.count, 10), t0 = performance.now(), dur = 1400;
+      const step = (t) => {
+        const p = Math.min((t - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        fmt(el, Math.round(target * eased));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { fmt(el, target); }
+      else requestAnimationFrame(step);
+    }
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => counterIo.observe(el));
+</script>
+
+</body>
+</html>
